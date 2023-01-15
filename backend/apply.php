@@ -6,6 +6,7 @@
     if($dbcon->connect_error){
         echo "Database not connected";
     }else{
+        // Get the data of the job and store in the session; $_SESSION['job']; 
         if($role == "1"){
             $apl = "SELECT * FROM user_tb WHERE role='$role'";
             $result = $dbcon->query($sql);
