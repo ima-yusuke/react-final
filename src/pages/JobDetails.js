@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { redirect } from "react-router-dom";
 
 function JobDetail(props){
     const [flag, setFlag] = useState();
@@ -6,7 +7,7 @@ function JobDetail(props){
         if(flag){
             // redirect to apply page
         }else{
-            // redirect to login page
+            redirect("/login");
         }
     }
     /*
