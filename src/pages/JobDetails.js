@@ -3,10 +3,11 @@ import { redirect } from "react-router-dom";
 
 function JobDetail(props){
     const [flag, setFlag] = useState();
-    let [job, setJob] = useState();
+    const [job, setJob] = useState();
+    const [app, setApp] = useState();
     let apply = () => {
         if(flag){
-            // redirect to apply page
+            // send data to database
         }else{
             redirect("/login");
         }
@@ -14,7 +15,7 @@ function JobDetail(props){
     return (
         <>
             <section>
-
+                
             </section>
             <button type="button" onClick={apply}>Apply</button>
         </>
