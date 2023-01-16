@@ -8,21 +8,44 @@ import RegCompo from './pages/RegCompo';
 import Login from './pages/Login';
 import Table from './pages/Table';
 import { useState } from 'react';
+import SearchCompo from './pages/SearchCompo';
 
 function Main(){
     const [msg,setMsg] = useState("");
     const [user,setUser]=useState("");
     const [like,setLike] = useState([])
     const [obj,setObj] = useState("nothing")
+    const [word,setWord] = useState([{
+        fname: "Yusuke",
+        lname: "Ogata"
+    }, {
+        fname: "Maria",
+        lname: "Clara"
+    }, {
+        fname: "Kakuni",
+        lname: "Takumi"
+    }]);
+    const [item,setItem] = useState([{
+        fname: "Yusuke",
+        lname: "Ogata"
+    }, {
+        fname: "Maria",
+        lname: "Clara"
+    }, {
+        fname: "Kakuni",
+        lname: "Takumi"
+    }]);
+
     return(
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Layout/>}>
+                <Route path='/' element={<Layout word={word} setWord={setWord} item={item} setItem={setItem}/>}>
                     <Route index element={<Home setMsg={setMsg} msg={msg} fav={setLike}/>}/>
                     <Route path='about' element={<About fa={like}/>}/> 
                     <Route path='register' element={<RegCompo/>}/>
                     <Route path='login' element={<Login setUser={setUser}/>}/>
                     <Route path='table' element={<Table obj={obj} setObj={setObj}/>}/>
+                    <Route path='search' element={<SearchCompo word={word} setWord={setWord} item={item} />}/>
                     <Route path='*' element={<Nopage/>}/>
                 </Route>
             </Routes>

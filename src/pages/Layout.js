@@ -1,6 +1,15 @@
 import { Outlet, Link } from "react-router-dom";
-function Layout(){
-    return(
+function Layout({ setWord, item }) {
+    const keyword = (e) => {
+        e.preventDefault();
+        const chara = e.target.value.toLowerCase();
+        // console.log(chara);
+        const searchName = item.filter(name => name.fname.toLowerCase().includes(chara))
+        // console.log(searchName)
+        setWord(searchName)
+    }
+    
+    return (
         <>
             <nav>
                 <ul>
@@ -20,9 +29,12 @@ function Layout(){
                         <Link to="/table">Table</Link>
                     </li>
                 </ul>
-            </nav>
-
-            <Outlet/>
+                <form onSubmit={keyword}>
+                    <input type="text" placeholder="Search" name="keyword" onChange={(e)=> keyword(e)} />
+                    <Link to="/search" type="button">Search</Link>
+                </form>
+               </nav>
+            <Outlet />
         </>
     )
 };
