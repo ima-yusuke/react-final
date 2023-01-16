@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-function Home({setMsg,msg,fav}){
+import Display from "./Display";
+function Home({setMsg,msg}){
     const navigate = useNavigate();
     const [sid,setSid] = useState('');
     const sss = sessionStorage.getItem("sid");
@@ -24,37 +25,6 @@ function Home({setMsg,msg,fav}){
         }
        
     }
-
-    let stuObj = {
-        ID:0, 
-        fname:'',
-        lname:''
-    };
- 
-    const [student,setStudent] = useState(stuObj)
-
-    // Saving input value by using onChange
-    const chVal = (event) =>{
-        const propertyName = event.target.name;
-        setStudent(prevStat=>{
-            return {...prevStat, [propertyName]:event.target.value}
-        })
-    }
-
-    const add = ()=>{
-        fav(pre=>{
-            return [...pre,student]
-        });
-
-        stuObj = {
-            ID:0, 
-            fname:'',
-            lname:''
-        };
-        setStudent(stuObj)
-    }
-
-            
     return(
         <>
             <h1>Session ID: {sss}</h1>
@@ -62,15 +32,7 @@ function Home({setMsg,msg,fav}){
             <button onClick={()=>navigate("/about")}>Click</button>
             <button onClick={getSid}>Get Session</button>
             <button onClick={sendSid}>Send Session</button>
-
-            {/* ------------------------------------------ */}
-            <form>
-                <input name="ID" onChange={chVal} value={student['ID']}/>
-                <input name="fname" onChange={chVal} value={student['fname']}/>
-                <input name="lname" onChange={chVal} value={student['lname']}/>
-                <button type="button" onClick={add}>Add</button>
-            </form>
-            
+            <Display></Display>
         </>
     )
 };
