@@ -5,17 +5,18 @@ function JobDetail(props){
     const [flag, setFlag] = useState();
     const [job, setJob] = useState();
     const [app, setApp] = useState();
-    let apply = () => {
-        if(flag){
-            // send data to database
-        }else{
-            redirect("/login");
-        }
+    let apply = (e) => {
+        console.log(e.target)
+        // if(flag){
+        //     // send data to database
+        // }else{
+        //     redirect("/login");
+        // }
     }
     return (
         <>
             <section>
-                
+
             </section>
             <button type="button" onClick={apply}>Apply</button>
         </>

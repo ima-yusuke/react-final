@@ -5,7 +5,8 @@ function Home({setMsg,msg}){
     const navigate = useNavigate();
     const [sid,setSid] = useState('');
     const sss = sessionStorage.getItem("sid");
-    const getSid = () =>{
+    const getSid = (e) =>{
+        console.log(e.target)
         jsonSrv.get("test2.php")
         .then(res=>{
             console.log(res);
