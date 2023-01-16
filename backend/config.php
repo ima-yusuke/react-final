@@ -2,5 +2,5 @@
     $serverName = "localhost";
     $dbUser = "root";
     $dbpass = "";
-    $dbName = "user_tb";
+    $dbName = "final_db";
 ?>
