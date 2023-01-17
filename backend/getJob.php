@@ -15,8 +15,6 @@
             array_push($jobArray,$data);
         }
         echo json_encode($jobArray);
-        // print_r($jobArray);
-        // var_dump(json_encode($jobArray));
     }
         $dbCon->close();
 ?>
