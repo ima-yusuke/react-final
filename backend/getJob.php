@@ -11,10 +11,10 @@
       
         $jobArray = [];
         foreach($result as $data){
+
             array_push($jobArray,$data);
         }
         echo json_encode($jobArray);
-        // print_r($jobArray);
     }
         $dbCon->close();
 ?>
