@@ -1,24 +1,58 @@
-import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import jsonSrv from "../Services/jsonSrv";
+import userSrv from "../Services/userSrv";
 
 function JobDetail(props){
-    const [flag, setFlag] = useState();
-    const [job, setJob] = useState();
-    const [app, setApp] = useState();
-    let apply = (e) => {
-        console.log(e.target)
-        // if(flag){
-        //     // send data to database
-        // }else{
-        //     redirect("/login");
-        // }
+    let jobid = props.jobid;
+    const [job, setJob] = useState([]);
+    // const [app, setApp] = useState();
+    let getDetail = () => {
+        jsonSrv.send('getDetails.php', JSON.stringify({jobid: jobid}))
+        .then(res=>{
+            console.log(res.data);
+        })
+        jsonSrv.get('getDetails.php')
+        .then(res=>{
+            setJob(res.data);
+        })
+    }
+    useEffect(()=>{
+        getDetail()
+    }, [])
+    let apply = () => {
+        let sid = sessionStorage.getItem('sid');
+        let applyInfo = [sid, jobid];
+        userSrv.register('apply.php', applyInfo)
+        .then(res=>{
+            console.log(res.data);
+        })
+        jsonSrv.send('apply.php', JSON.stringify({sid: sid}, {jobid: jobid}))
+        .then(res=>{
+            console.log(res.data);
+            // setApp(res.data)
+        })
     }
     return (
         <>
-            <section>
-
-            </section>
-            <button type="button" onClick={apply}>Apply</button>
+            {
+                job.map((val, id)=>
+                (jobid == val['jobid'])?
+                <section key={id}>
+                    <h3>{val['title']}</h3>
+                    <article>
+                        <p>{val['contents']}</p>
+                        <p>{val['salary']}</p>
+                        <p>{val['address']}</p>
+                    </article>
+                </section>
+                :null)
+                // Display jobs
+                (sessionStorage.getItem('sid')) ?
+                <button type="button" onClick={apply}>Apply</button>
+                : <button type="button"><Link to="/login">Apply</Link></button>
+                // Apply button
+            }
         </>
     )
 }

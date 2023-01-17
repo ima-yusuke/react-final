@@ -7,6 +7,7 @@ import Nopage from './pages/Nopage';
 import RegCompo from './pages/RegCompo';
 import Login from './pages/Login';
 import { useState } from 'react';
+import JobDetails from './pages/JobDetails';
 
 function Main(){
     const [msg,setMsg] = useState("");
@@ -20,6 +21,7 @@ function Main(){
                     <Route path='register' element={<RegCompo/>}/>
                     <Route path='login' element={<Login setUser={setUser}/>}/>
                     <Route path='*' element={<Nopage/>}/>
+                    <Route path='details' element={<JobDetails />} />
                 </Route>
             </Routes>
         </BrowserRouter>

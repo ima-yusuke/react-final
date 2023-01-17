@@ -1,20 +1,23 @@
 <?php
     header('Access-Control-Allow-Origin: http://localhost:3000');
+    header('Access-Control-Allow-Methods:POST');
+    header('Access-Control-Allow-Headers:Content-type');
     include "./config.php";
+    $data = file_get_contents('php://input');
+    $dataArray = json_decode($data,true);
+    $sid = $dataArray[0];
+    $jobid = $dataArray[1];
+    session_id($sid);
+    session_start();
+    $uid = $_SESSION['logUser']['uid'];
     $dbcon = new mysqli($serverName, $dbUser, $dbpass, $dbName);
-    $role = $_SESSION['logUser']['role'];
     if($dbcon->connect_error){
         echo "Database not connected";
     }else{
-        // Get the data of the job and store in the session; $_SESSION['job']; 
-        if($role == "1"){
-            $apl = "SELECT * FROM user_tb WHERE role='$role'";
-            $result = $dbcon->query($sql);
-            if($res->num_rows > 0){
-                echo json_encode(["flag"=>true]);
-            }else{
-                echo json_encode(["flag"=>false]);
-            }
-        }
+        $sql = "INSERT INTO applier_tb (jobid, uid) VALUES ($jobid, $uid)";
+        $apl = "SELECT * FROM user_tb WHERE uid='$uid'";
+        $result = $dbcon->query($sql);
+        echo "Applied!";
     }
+    $dbcon->close();
 ?>
