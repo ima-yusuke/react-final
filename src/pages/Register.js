@@ -60,7 +60,7 @@ function Register(){
               <label htmlFor="age">Age</label>
             </div>
             <div className="mb-3">
-                <label htmlFor="type" className="form-label">Select your role</label>
+                <label htmlFor="role" className="form-label">Select your role</label>
                 <select className="form-select form-select-lg" name="role" required>
                     <option defaultValue disabled>Select one</option>
                     <option value="0">Administrator</option>

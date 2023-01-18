@@ -17,28 +17,25 @@ function Login() {
                 console.log(response);
                 sessionStorage.setItem("sid", response.data.sid);
                 setLogin(sessionStorage.getItem("sid"))
-                // rPage(data.type)
+                switch (response.data.role) {
+                    case 0:
+                        navigate("/")
+                        break;
+                    case 1:
+                        navigate("/user")
+                        break;
+                    case 2:
+                        navigate("/Employer")
+                        break;
+                    default:
+                        break;
+                }
 
             })
             .catch(err => {
             })
 
     }
-    const rPage = (type) => {
-        switch (type) {
-            case 0:
-                navigate("/")
-                break;
-            case 1:
-                navigate("/JobDetails")
-                break;
-            case 2:
-                navigate("/Employer")
-                break;
-            default:
-                break;
-        }
-    };
 
     return (
         <>

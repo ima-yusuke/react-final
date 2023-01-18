@@ -1,24 +1,9 @@
-import { useState } from "react";
-import { redirect } from "react-router-dom";
-
-function JobDetail(props){
-    const [flag, setFlag] = useState();
-    const [job, setJob] = useState();
-    const [app, setApp] = useState();
-    let apply = () => {
-        if(flag){
-            // send data to database
-        }else{
-            redirect("/login");
-        }
-    }
-    return (
+function JobDetails(){
+    return(
         <>
-            <section>
-                
-            </section>
-            <button type="button" onClick={apply}>Apply</button>
+             <h1>user</h1>
         </>
     )
+   
 }
-export default JobDetail;
+export default JobDetails;
