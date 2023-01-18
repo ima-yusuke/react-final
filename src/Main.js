@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Layout from './pages/Layout';
 import Nopage from './pages/Nopage';
-import RegCompo from './pages/RegCompo';
+// import RegCompo from './pages/RegCompo';
 import Login from './pages/Login';
 import Test from './pages/Test';
 import { useState } from 'react';
@@ -16,6 +16,8 @@ import SearchCompo from './pages/SearchCompo';
 import Employer from './pages/Employer';
 import Employerpost from './pages/Employerpost';
 import Employeredit from './pages/Employeredit';
+import JobDetails from './pages/JobDetails';
+import Register from './pages/Register';
 
 function Main() {
     const [msg, setMsg] = useState("");
@@ -32,8 +34,9 @@ function Main() {
                 <Route path='/' element={<Layout word={word} setWord={setWord} item={item} setItem={setItem} />}>
                     <Route index element={<Home setMsg={setMsg} msg={msg} />} />
                     <Route path='about' element={<About />} /> {/* if path == /about then displaying componenet should be <About/> */}
-                    <Route path='register' element={<RegCompo />} />
-                    <Route path='login' element={<Login setUser={setUser} />} />
+                    <Route path='register' element={<Register/>}/>
+                    <Route path='login' element={<Login setUser={setUser}/>}/>
+                    <Route path='user' element={<JobDetails/>}/>
                     <Route path='*' element={<Nopage />} />
                     <Route path='test' element={<Test />} />
                     <Route path='admin' element={<JobAdmin />}></Route>
