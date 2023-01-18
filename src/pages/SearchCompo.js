@@ -12,7 +12,7 @@ const SearchCompo = ({ word }) => {
           <h5>{name.title}</h5>
           <p className="card-text">{name.contents}</p>
           <a href="#" className="btn btn-primary">Go somewhere</a>
-        </div>
+        </div>        
       </div>
 
     )}

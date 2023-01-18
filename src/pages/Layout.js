@@ -1,7 +1,8 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link , useNavigate} from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 
 function Layout({ setWord, item, setItem }) {
+    const nvigate = useNavigate();
     const keyword = (e) => {
         e.preventDefault();
 
@@ -14,8 +15,9 @@ function Layout({ setWord, item, setItem }) {
             // console.log(res.data)
             // console.log(typeof(res.data))
             const searchName = item.filter(name => name.title.toLowerCase().includes(chara))
-            console.log(searchName)
-            setWord(searchName)
+            // console.log(searchName)
+            nvigate('/search');
+            setWord(searchName);
         })
         .catch(err=>{
             console.log(err)
@@ -44,9 +46,9 @@ function Layout({ setWord, item, setItem }) {
                 </ul>
                 <form >
                     <input type="text" placeholder="Search title" name="keyword" onChange={(e)=> keyword(e)} />
-                    <button>
+                    {/* <button>
                         <Link to="/search" type="button">Search</Link>
-                    </button>
+                    </button> */}
                 </form>
                </nav>
             <Outlet />
