@@ -3,10 +3,8 @@
     header('Access-Control-Allow-Methods:POST');
     header('Access-Control-Allow-Headers:Content-type');
     include "./config.php";
-    $data = file_get_contents('php://input');
-    $dataArray = json_decode($data,true);
-    $sid = $dataArray[0];
-    $jobid = $dataArray[1];
+    $sid = $_POST['sid'];
+    $jobid = $_POST['jobid'];
     session_id($sid);
     session_start();
     $uid = $_SESSION['logUser']['uid'];

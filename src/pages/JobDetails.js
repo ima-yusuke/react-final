@@ -1,57 +1,52 @@
 import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-import userSrv from "../Services/userSrv";
 
-function JobDetail(props){
-    let jobid = props.jobid;
+function JobDetail(){
+    const { state } = useLocation();
+    let jobid = state;
     const [job, setJob] = useState([]);
-    // const [app, setApp] = useState();
     let getDetail = () => {
-        jsonSrv.send('getDetails.php', JSON.stringify({jobid: jobid}))
+        let formData = new FormData();
+        formData.append("jobid", jobid);
+        jsonSrv.send('getDetails.php', formData)
         .then(res=>{
             console.log(res.data);
         })
         jsonSrv.get('getDetails.php')
         .then(res=>{
+            console.log(res.data);
             setJob(res.data);
         })
     }
+    getDetail();
     useEffect(()=>{
-        getDetail()
+        job.forEach((val)=>{
+            let article = document.createElement("article");
+            if(jobid == val['jobid']){
+                let p = document.createElement("p");
+                for(let val of val){
+                    p.innerText = val[val];
+                    article.appendChild(p);
+                }
+            }
+            document.getElementsByTagName("section")[0].appendChild(article);
+        })
     }, [])
     let apply = () => {
         let sid = sessionStorage.getItem('sid');
-        let applyInfo = [sid, jobid];
-        userSrv.register('apply.php', applyInfo)
+        let formData = new FormData();
+        formData.append("sid", sid);
+        formData.append("jobid", jobid);
+        jsonSrv.send('apply.php', formData)
         .then(res=>{
-            console.log(res.data);
-        })
-        jsonSrv.send('apply.php', JSON.stringify({sid: sid}, {jobid: jobid}))
-        .then(res=>{
-            console.log(res.data);
-            // setApp(res.data)
+            alert(res.data);
         })
     }
     return (
         <>
             {
-                job.map((val, id)=>
-                (jobid == val['jobid'])?
-                <section key={id}>
-                    <h3>{val['title']}</h3>
-                    <article>
-                        <p>{val['contents']}</p>
-                        <p>{val['salary']}</p>
-                        <p>{val['address']}</p>
-                    </article>
-                </section>
-                :null)
-                // Display jobs
-                (sessionStorage.getItem('sid')) ?
                 <button type="button" onClick={apply}>Apply</button>
-                : <button type="button"><Link to="/login">Apply</Link></button>
-                // Apply button
             }
         </>
     )

@@ -25,7 +25,7 @@ function Display(){
             <div className="card" key={id}>
                 <img className="card-img-top" src="holder.js/100x180/" alt="Title"/>
                 <div className="card-body">
-                    <h4 className="card-title"><Link to="/details" jobid={val['jobid']}>{val['title']}</Link></h4>
+                    <h4 className="card-title"><Link to="/details" state={val['jobid']}>{val['title']}</Link></h4>
                     <p className="card-text">salary: {val['salary']}</p>
                 </div>
             </div>
