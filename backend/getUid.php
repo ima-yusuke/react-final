@@ -4,5 +4,6 @@
     session_id($sid);
     session_start();
     $uid = $_SESSION['logUser']['uid'];
+    // echo $uid;
     echo $uid;
 ?>
