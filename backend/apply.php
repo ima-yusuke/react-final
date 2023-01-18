@@ -13,8 +13,7 @@
         echo "Database not connected";
     }else{
         $sql = "INSERT INTO applier_tb (jobid, uid) VALUES ($jobid, $uid)";
-        $apl = "SELECT * FROM user_tb WHERE uid='$uid'";
-        $result = $dbcon->query($sql);
+        $dbcon->query($sql);
         echo "Applied!";
     }
     $dbcon->close();

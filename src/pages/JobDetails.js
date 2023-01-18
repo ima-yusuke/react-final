@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 
-function JobDetails(){
+function JobDetails({setIds}){
     const { state } = useLocation();
     let jobid = state;
     const [job, setJob] = useState([]);
@@ -19,6 +19,7 @@ function JobDetails(){
     }, [])
     let apply = () => {
         let sid = sessionStorage.getItem('sid');
+        setIds([sid, jobid]);
         let formData = new FormData();
         formData.append("sid", sid);
         formData.append("jobid", jobid);
@@ -45,6 +46,5 @@ function JobDetails(){
             <button type="button" onClick={apply}>Apply</button>
         </>
     )
-   
 }
 export default JobDetails;

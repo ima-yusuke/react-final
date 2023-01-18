@@ -9,8 +9,8 @@ import Login from './pages/Login';
 import { useState } from 'react';
 
 function Main(){
-    const [msg,setMsg] = useState("");
     const [user,setUser]=useState("");
+    const [ids, setIds] = useState();
     return(
         <BrowserRouter>
             <Routes>
@@ -18,8 +18,8 @@ function Main(){
                     <Route path='register' element={<Register/>}/>
                     <Route path='login' element={<Login setUser={setUser}/>}/>
                     <Route path='*' element={<Nopage/>}/>
-                    <Route path='employer' element={<Employer/>}/>
-                    <Route path='user' element={<JobDetails/>}/>
+                    <Route path='employer' element={<Employer/>} ids={ids} />
+                    <Route path='user' element={<JobDetails/>} setIds={setIds} ids={ids} />
                 </Route>
             </Routes>
         </BrowserRouter>
