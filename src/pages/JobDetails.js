@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 
-function JobDetail(){
+function JobDetails(){
     const { state } = useLocation();
     let jobid = state;
     const [job, setJob] = useState([]);
@@ -45,5 +45,6 @@ function JobDetail(){
             <button type="button" onClick={apply}>Apply</button>
         </>
     )
+   
 }
-export default JobDetail;
+export default JobDetails;

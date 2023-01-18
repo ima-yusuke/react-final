@@ -3,9 +3,10 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Layout from './pages/Layout';
 import Nopage from './pages/Nopage';
 import Register from './pages/Register';
+import Employer from './pages/Employer';
+import JobDetails from './pages/JobDetails';
 import Login from './pages/Login';
 import { useState } from 'react';
-import JobDetails from './pages/JobDetails';
 
 function Main(){
     const [msg,setMsg] = useState("");
@@ -17,7 +18,8 @@ function Main(){
                     <Route path='register' element={<Register/>}/>
                     <Route path='login' element={<Login setUser={setUser}/>}/>
                     <Route path='*' element={<Nopage/>}/>
-                    <Route path='details' element={<JobDetails />} />
+                    <Route path='employer' element={<Employer/>}/>
+                    <Route path='user' element={<JobDetails/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
