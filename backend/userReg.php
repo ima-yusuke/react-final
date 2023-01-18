@@ -17,7 +17,7 @@
         if($dbcon->connect_error){
             echo "connection failed ".$dbcon->connect_error;
         }else{
-            $sql = "INSERT INTO user_tb (fname,lname,email,phone,pass,age,role) VALUES ('$fname','$lname','$email','$phone','$pass','$age', '$role')";
+            $sql = "INSERT INTO user_tb (fname,lname,email,phone,pass,age,role,dis) VALUES ('$fname','$lname','$email','$phone','$pass','$age', '$role',1)";
             if($dbcon->query($sql)===TRUE){
                 echo "You have been registered";
             }else{

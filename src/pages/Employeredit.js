@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-function Employeredit( tempId ,setTmpId ) {
+function Employeredit( { tempId ,setTmpId } ) {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
+    console.log(tempId);
     const display = () => {
         jsonSrv.get('getJob.php')
             .then(res => {
@@ -13,8 +14,10 @@ function Employeredit( tempId ,setTmpId ) {
                 console.log(err)
             })
     }
+
     const jobedit = (e) => {
         const formData = new FormData(e.target);
+        formData.append('jobid',tempId);
         jsonSrv.send('jobedit.php', formData)
             .then(res => {
                 console.log(res);

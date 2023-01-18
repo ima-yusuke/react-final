@@ -2,17 +2,32 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 function Employer({tmpId ,setTmpId }){
-    const [jobs, setJob] = useState([]);
+    const [jobs, setJob] = useState([]); 
 
     const navigate = useNavigate();
+
+    // const display =()=>{
+    //     let sid = sessionStorage.getItem('sid')
+    //     console.log(sid);
+    //     jsonSrv.get('getjoblist.php',sid)
+    //     .then(res=>{
+    //         setJob(res.data);
+    //         console.log(res);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err);
+    //     })
+    // }
     const display =()=>{
-        jsonSrv.get('getJob.php')
+        // let sid = sessionStorage.getItem('sid')
+        // console.log(sid);
+        jsonSrv.get('getjob.php')
         .then(res=>{
             setJob(res.data);
-            console.log(jobs)
+            console.log(res);
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err);
         })
     }
 
@@ -39,6 +54,7 @@ function Employer({tmpId ,setTmpId }){
         display()
     },[]
     )
+
     return(
         <div id="box">
    <nav>
