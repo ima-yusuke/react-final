@@ -17,7 +17,7 @@ function Employer({tmpId ,setTmpId }){
     }
 
     const toedit=(e)=>{
-        e.preventDefault();
+        // e.preventDefault();
 
         // jsonSrv.send('jobedit.php',e.target.value)
         // .then(res=>{

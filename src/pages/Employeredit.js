@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-function Employeredit( tempId ,setTmpId ) {
+function Employeredit( {tmpId ,setTmpId} ) {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
     const display = () => {
@@ -15,10 +15,11 @@ function Employeredit( tempId ,setTmpId ) {
     }
     const jobedit = (e) => {
         const formData = new FormData(e.target);
+        formData.append("jobid",tmpId);
         jsonSrv.send('jobedit.php', formData)
             .then(res => {
                 console.log(res);
-                alert(res.data + "Data been added")
+                // alert(res.data + "Data been added")
             })
             .catch(err => {
                 console.log(err);
@@ -33,7 +34,7 @@ function Employeredit( tempId ,setTmpId ) {
     )
     return (
         <div id="box">
-            <h1>{tempId}</h1>
+            {/* <h1>{tmpId}</h1> */}
             <nav>
                 <ul>
                     <li className="var_nav">

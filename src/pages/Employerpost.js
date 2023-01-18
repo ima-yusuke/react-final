@@ -4,17 +4,6 @@ import jsonSrv from "../Services/jsonSrv";
 function Employerpost() {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
-    
-    const display = () => {
-        jsonSrv.get('getJob.php')
-            .then(res => {
-                setJob(res.data);
-                console.log(jobs)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
 
     const jobpost = (e) => {
         const formData = new FormData(e.target);
@@ -26,14 +15,7 @@ function Employerpost() {
                 console.log(err);
             })
         navigate('/employer');
-        display();
     }
-    
-
-    useEffect(() => {
-        display()
-    }, []
-    )
     return (
         <div id="box">
             <nav>

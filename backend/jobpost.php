@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "connection failed " . $dbcon->connect_error;
     } else {
         // $tmpID = $_SESSION['logUser']["uid"];
-        $tmpID = 1;
+        // $tmpID = 1;
         $tmpImg = "img/" . $jobImg['name'];
 
-        $sql = "INSERT INTO `ja_tb`( `uid`, `title`, `address`, `salary`, `img`, `content`, `dis`) VALUES ('$tmpID','$title','$address','$salary','$tmpImg','$content',1)";
+        $sql = "INSERT INTO `ja_tb`( `uid`, `title`, `address`, `salary`, `img`, `content`, `dis`) VALUES (1,'$title','$address',$salary,'$tmpImg','$content',1)";
 
         $dbcon->query($sql);
         $dbcon->close();
