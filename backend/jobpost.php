@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $address = $_POST['address'];
     $salary = $_POST['salary'];
     $content = $_POST['content'];
+    $sid = $_POST['sid'];
+    session_id($sid);
+    session_start();
+    $uid = $_SESSION['logUser']['uid'];
+    echo $uid;
     // $jobImg = $_FILES['img'];
     $jobImg = "takoyaki.jpg";
     // $targetDir = "./img/";
@@ -17,12 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($dbcon->connect_error) {
         echo "connection failed " . $dbcon->connect_error;
     } else {
-        // $tmpID = $_SESSION['logUser']["uid"];
-        // $tmpID = 1;
-        $tmpImg = "img/" . $jobImg['name'];
-
-        $sql = "INSERT INTO `ja_tb`( `uid`, `title`, `address`, `salary`, `img`, `content`, `dis`) VALUES (1,'$title','$address',$salary,'$tmpImg','$content',1)";
-
+        $sql ="INSERT INTO `ja_tb`(`uid`, `title`, `contents`, `address`, `img`, `salary`, `dis`) VALUES ($uid,'$title','$content','$address','img',$salary,1)";
         $dbcon->query($sql);
         $dbcon->close();
     }

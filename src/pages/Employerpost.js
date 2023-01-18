@@ -4,9 +4,11 @@ import jsonSrv from "../Services/jsonSrv";
 function Employerpost() {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
+    let sid = sessionStorage.getItem('sid');
 
     const jobpost = (e) => {
         const formData = new FormData(e.target);
+        formData.append('sid',sid);
         jsonSrv.send('jobpost.php', formData)
             .then(res => {
                 console.log(res);
@@ -60,12 +62,12 @@ function Employerpost() {
                             className="form-control" name="salary" placeholder="salary" required />
                         <label htmlFor="formId1">salary</label>
                     </div>
-                    <div className="form-floating mb-3">
+                    {/* <div className="form-floating mb-3">
                         <input
                             type="file"
                             className="form-control" name="img" placeholder="image" required />
                         <label htmlFor="formId1">image</label>
-                    </div>
+                    </div> */}
                     <div className="form-floating mb-3">
                         <input
                             type="text"

@@ -7,14 +7,7 @@
     $address = $_POST['address'];
     $salary = $_POST['salary'];
     $content = $_POST['content'];
-    $jobImg = $_FILES['img'];
-    // $jobImg = "takoyaki.jpg";
-    // $targetDir = "./img/";
     $jobid = $_POST['jobid'];
-    
-        // echo $content;
-
-    // $jobid = file_get_contents('php://input');
 
     $dbCon = new mysqli($serverName,$dbUser,$dbpass,$dbName);
     if($dbCon->connect_error){

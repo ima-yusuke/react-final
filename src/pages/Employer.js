@@ -2,43 +2,44 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 function Employer({tmpId ,setTmpId }){
-    const [jobs, setJob] = useState([]);
-
+    const [jobs, setJob] = useState([]); 
+    const [uid,setUid] = useState('');
     const navigate = useNavigate();
-    const display =()=>{
-        jsonSrv.get('getJob.php')
+    
+    let sid = sessionStorage.getItem('sid');
+    const getuid = ()=>{
+        jsonSrv.send("getUid.php",sid)
         .then(res=>{
-            setJob(res.data);
-            console.log(jobs)
-        })
-        .catch(err=>{
-            console.log(err)
+            console.log(res);
+            setUid(res.data);
         })
     }
-
+    
+    const display =()=>{
+        jsonSrv.get('getjob.php')
+        .then(res=>{
+            setJob(res.data);
+            getuid();
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+    
     const toedit=(e)=>{
-        // e.preventDefault();
-
-        // jsonSrv.send('jobedit.php',e.target.value)
-        // .then(res=>{
-        //     console.log(res); 
-        // })
-        // .catch(err=>{
-        //     console.log(err);
-        // })
         if(e.target.value){
             setTmpId(e.target.value);
             console.log(e.target.value);
             console.log(tmpId);
         }
         navigate('/employeredit');
-        // display();
     }
   
     useEffect(()=>{
         display()
     },[]
     )
+
     return(
         <div id="box">
    <nav>
@@ -65,7 +66,7 @@ function Employer({tmpId ,setTmpId }){
     </nav>
     <section>
         {jobs.map((val,id)=>
-            ((val['dis']==1))? // "&&login['uid']==val['uid']"
+            ((val['dis']==1 && val['uid'] == uid))?
             <div className="card" key={id}>
                 <img className="card-img-top" src="holder.js/100x180/" alt="Title"/>
                 <div className="card-body">
