@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 import Display from "./Display";
+import Admin from "./JobAdmin";
+import Userlist from "./Userlist";
 function Home({setMsg,msg}){
     const navigate = useNavigate();
     const [sid,setSid] = useState('');
@@ -23,7 +25,6 @@ function Home({setMsg,msg}){
                 console.log(res);
             })
         }
-       
     }
     return(
         <>
@@ -33,6 +34,8 @@ function Home({setMsg,msg}){
             <button onClick={getSid}>Get Session</button>
             <button onClick={sendSid}>Send Session</button>
             <Display></Display>
+            {/* <Admin/> */}
+            {/* <Userlist/> */}
         </>
     )
 };
