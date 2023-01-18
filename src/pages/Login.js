@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userSrv from "../Services/userSrv";
 
-function Login() {
+function Login({ setRole}) {
     const [login, setLogin] = useState("")
     // to get the session id, later encrypted to protect the userinfo
     const navigate = useNavigate()
@@ -19,12 +19,15 @@ function Login() {
                 setLogin(sessionStorage.getItem("sid"))
                 switch (response.data.role) {
                     case 0:
+                        setRole(0)
                         navigate("/")
                         break;
                     case 1:
+                        setRole(1)
                         navigate("/user")
                         break;
                     case 2:
+                        setRole(2)
                         navigate("/Employer")
                         break;
                     default:

@@ -28,14 +28,18 @@ function Main() {
     const [item, setItem] = useState([]);
     const [tmpId, setTmpId] = useState(0);
 
+    // const [login, setLogin] = useState("")
+    const [role, setRole] = useState(1)
+    
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Layout word={word} setWord={setWord} item={item} setItem={setItem} />}>
+                <Route path='/' element={<Layout word={word} setWord={setWord} item={item} setItem={setItem} role={role} setRole={setRole}/>}>
                     <Route index element={<Home setMsg={setMsg} msg={msg} />} />
                     <Route path='about' element={<About />} /> {/* if path == /about then displaying componenet should be <About/> */}
                     <Route path='register' element={<Register/>}/>
-                    <Route path='login' element={<Login setUser={setUser}/>}/>
+                    <Route path='login' element={<Login setUser={setUser} setRole={setRole}/>}/>
                     <Route path='user' element={<JobDetails/>}/>
                     <Route path='*' element={<Nopage />} />
                     <Route path='test' element={<Test />} />

@@ -1,7 +1,7 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
 
-function Layout({ setWord, item, setItem }) {
+function Layout({ setWord, item, setItem, role }) {
     const nvigate = useNavigate();
     const keyword = (e) => {
         e.preventDefault();
@@ -40,12 +40,12 @@ function Layout({ setWord, item, setItem }) {
 
                     </ul>
                 </div>
-                <form >
+
+                {sessionStorage.getItem("sid")!==null&&role==1 ?
+                <form>
                     <input type="text" placeholder="Search title" name="keyword" onChange={(e) => keyword(e)} />
-                    {/* <button>
-                        <Link to="/search" type="button">Search</Link>
-                    </button> */}
-                </form>
+                </form>:null
+                }
             </nav>
             <Outlet />
         </>
