@@ -5,17 +5,6 @@ function Employerpost() {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
     let sid = sessionStorage.getItem('sid');
-    
-    const display = () => {
-        jsonSrv.get('getJob.php')
-            .then(res => {
-                setJob(res.data);
-                console.log(jobs)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
 
     const jobpost = (e) => {
         const formData = new FormData(e.target);
@@ -29,12 +18,6 @@ function Employerpost() {
             })
         navigate('/employer');
     }
-    
-
-    useEffect(() => {
-        display()
-    }, []
-    )
     return (
         <div id="box">
             <nav>

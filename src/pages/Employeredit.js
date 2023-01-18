@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-function Employeredit( { tempId ,setTmpId } ) {
+function Employeredit( {tmpId ,setTmpId} ) {
     const [jobs, setJob] = useState([]);
     const navigate = useNavigate();
-    console.log(tempId);
+    console.log(tmpId);
     const display = () => {
         jsonSrv.get('getJob.php')
             .then(res => {
@@ -17,17 +17,16 @@ function Employeredit( { tempId ,setTmpId } ) {
 
     const jobedit = (e) => {
         const formData = new FormData(e.target);
-        formData.append('jobid',tempId);
+        formData.append("jobid",tmpId);
         jsonSrv.send('jobedit.php', formData)
             .then(res => {
                 console.log(res);
-                alert(res.data + "Data been added")
+                // alert(res.data + "Data been added")
             })
             .catch(err => {
                 console.log(err);
             })
         navigate('/employer');
-        display();
     }
 
     useEffect(() => {
@@ -36,7 +35,6 @@ function Employeredit( { tempId ,setTmpId } ) {
     )
     return (
         <div id="box">
-            <h1>{tempId}</h1>
             <nav>
                 <ul>
                     <li className="var_nav">
@@ -78,12 +76,6 @@ function Employeredit( { tempId ,setTmpId } ) {
                             type="number"
                             className="form-control" name="salary" placeholder="salary" required />
                         <label htmlFor="formId1">salary</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input
-                            type="file"
-                            className="form-control" name="img" placeholder="image" required />
-                        <label htmlFor="formId1">image</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input

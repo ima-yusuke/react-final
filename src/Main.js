@@ -45,7 +45,7 @@ function Main() {
                     <Route path='userdel' element={<UserDelList />} />
                     <Route path='employer' element={<Employer  tmpId={tmpId} setTmpId={setTmpId}/>}></Route>
                     <Route path='employerpost' element={<Employerpost />}></Route>
-                    <Route path='employeredit' tmpId={tmpId} setTmpId={setTmpId} element={<Employeredit />}></Route>
+                    <Route path='employeredit'   element={<Employeredit tmpId={tmpId} setTmpId={setTmpId} />}></Route>
                     <Route path='search' element={<SearchCompo word={word} setWord={setWord} item={item} />} />
                 </Route>
             </Routes>
