@@ -6,32 +6,29 @@ function JobDetail(){
     const { state } = useLocation();
     let jobid = state;
     const [job, setJob] = useState([]);
-    let getDetail = () => {
+    let details = () => {
         let formData = new FormData();
         formData.append("jobid", jobid);
         jsonSrv.send('getDetails.php', formData)
         .then(res=>{
-            console.log(res.data);
-        })
-        jsonSrv.get('getDetails.php')
-        .then(res=>{
-            console.log(res.data);
             setJob(res.data);
         })
     }
-    getDetail();
     useEffect(()=>{
-        job.forEach((val)=>{
-            let article = document.createElement("article");
-            if(jobid == val['jobid']){
-                let p = document.createElement("p");
-                for(let val of val){
-                    p.innerText = val[val];
-                    article.appendChild(p);
-                }
-            }
-            document.getElementsByTagName("section")[0].appendChild(article);
-        })
+        details();
+        console.log(job)
+        // job.forEach((val)=>{
+        //     let article = document.createElement("article");
+        //     if(jobid == val['jobid']){
+        //         let p = document.createElement("p");
+        //         for(let val of val){
+                    
+        //             p.innerText = val[val];
+        //             article.appendChild(p);
+        //         }
+        //     }
+        //     document.querySelector("section").appendChild(article);
+        // })
     }, [])
     let apply = () => {
         let sid = sessionStorage.getItem('sid');
@@ -46,8 +43,19 @@ function JobDetail(){
     return (
         <>
             {
-                <button type="button" onClick={apply}>Apply</button>
+                job.map((val, idx)=>
+                (jobid == val['jobid']) ?
+                <section key={idx}>
+                    <h3>{val['title']}</h3>
+                    <article>
+                        <p>{val['contents']}</p>
+                        <p>{val['salary']}</p>
+                        <p>{val['address']}</p>
+                    </article>
+                </section>
+                :null)
             }
+            <button type="button" onClick={apply}>Apply</button>
         </>
     )
 }
