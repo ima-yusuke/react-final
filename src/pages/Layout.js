@@ -1,12 +1,25 @@
 import { Outlet, Link } from "react-router-dom";
-function Layout({ setWord, item }) {
+import jsonSrv from "../Services/jsonSrv";
+
+function Layout({ setWord, item, setItem }) {
     const keyword = (e) => {
         e.preventDefault();
+
         const chara = e.target.value.toLowerCase();
         // console.log(chara);
-        const searchName = item.filter(name => name.fname.toLowerCase().includes(chara))
-        // console.log(searchName)
-        setWord(searchName)
+
+        jsonSrv.get('getJob.php')
+        .then(res=>{
+            setItem(res.data);
+            // console.log(res.data)
+            // console.log(typeof(res.data))
+            const searchName = item.filter(name => name.title.toLowerCase().includes(chara))
+            console.log(searchName)
+            setWord(searchName)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     
     return (
@@ -29,9 +42,11 @@ function Layout({ setWord, item }) {
                         <Link to="/table">Table</Link>
                     </li>
                 </ul>
-                <form onSubmit={keyword}>
-                    <input type="text" placeholder="Search" name="keyword" onChange={(e)=> keyword(e)} />
-                    <Link to="/search" type="button">Search</Link>
+                <form >
+                    <input type="text" placeholder="Search title" name="keyword" onChange={(e)=> keyword(e)} />
+                    <button>
+                        <Link to="/search" type="button">Search</Link>
+                    </button>
                 </form>
                </nav>
             <Outlet />

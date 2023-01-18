@@ -15,26 +15,8 @@ function Main(){
     const [user,setUser]=useState("");
     const [like,setLike] = useState([])
     const [obj,setObj] = useState("nothing")
-    const [word,setWord] = useState([{
-        fname: "Yusuke",
-        lname: "Ogata"
-    }, {
-        fname: "Maria",
-        lname: "Clara"
-    }, {
-        fname: "Kakuni",
-        lname: "Takumi"
-    }]);
-    const [item,setItem] = useState([{
-        fname: "Yusuke",
-        lname: "Ogata"
-    }, {
-        fname: "Maria",
-        lname: "Clara"
-    }, {
-        fname: "Kakuni",
-        lname: "Takumi"
-    }]);
+    const [word,setWord] = useState([]);
+    const [item,setItem] = useState([]);
 
     return(
         <BrowserRouter>

@@ -1,13 +1,21 @@
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+
 const SearchCompo = ({ word }) => {
-  
-  // setItem({fanme:"gag",
-// lname:"gah"})
   return (
-    <>
-      {/* <div>{word}</div> */}
-      <div>{word.map((name , idx)=>
-        <div key={idx}>{name.fname} {name.lname}</div>
-      )}</div>
+    <>{word.map((name, idx) =>
+      // <div key={idx}>{name.title}</div>
+
+      <div key={idx} className="card" style={{ width: "18rem" }}>
+        <img className="card-img-top" src={name.img} alt="Card image cap" />
+        <div className="card-body">
+          <h5>{name.title}</h5>
+          <p className="card-text">{name.contents}</p>
+          <a href="#" className="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+    )}
     </>
   )
 }
