@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jsonSrv from "../Services/jsonSrv";
-import Display from "./Display";
 function Home({setMsg,msg}){
     const navigate = useNavigate();
     const [sid,setSid] = useState('');
     const sss = sessionStorage.getItem("sid");
-    const getSid = (e) =>{
-        console.log(e.target)
+    const getSid = () =>{
         jsonSrv.get("test2.php")
         .then(res=>{
             console.log(res);
@@ -33,7 +31,6 @@ function Home({setMsg,msg}){
             <button onClick={()=>navigate("/about")}>Click</button>
             <button onClick={getSid}>Get Session</button>
             <button onClick={sendSid}>Send Session</button>
-            <Display></Display>
         </>
     )
 };

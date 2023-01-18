@@ -16,19 +16,6 @@ function JobDetail(){
     }
     useEffect(()=>{
         details();
-        console.log(job)
-        // job.forEach((val)=>{
-        //     let article = document.createElement("article");
-        //     if(jobid == val['jobid']){
-        //         let p = document.createElement("p");
-        //         for(let val of val){
-                    
-        //             p.innerText = val[val];
-        //             article.appendChild(p);
-        //         }
-        //     }
-        //     document.querySelector("section").appendChild(article);
-        // })
     }, [])
     let apply = () => {
         let sid = sessionStorage.getItem('sid');
