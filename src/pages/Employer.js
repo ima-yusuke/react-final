@@ -4,6 +4,7 @@ import jsonSrv from "../Services/jsonSrv";
 function Employer({tmpId ,setTmpId }){
     const [jobs, setJob] = useState([]); 
     const [uid,setUid] = useState('');
+    // const [uid,setUid] = useState('');
     const navigate = useNavigate();
     
     let sid = sessionStorage.getItem('sid');
