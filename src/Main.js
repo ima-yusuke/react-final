@@ -18,6 +18,7 @@ import Employerpost from './pages/Employerpost';
 import Employeredit from './pages/Employeredit';
 import JobDetails from './pages/JobDetails';
 import Register from './pages/Register';
+import Display from './pages/Display';
 
 function Main() {
     const [msg, setMsg] = useState("");
@@ -40,11 +41,11 @@ function Main() {
                     <Route path='about' element={<About />} /> {/* if path == /about then displaying componenet should be <About/> */}
                     <Route path='register' element={<Register/>}/>
                     <Route path='login' element={<Login setUser={setUser} setRole={setRole}/>}/>
-                    <Route path='user' element={<JobDetails/>}/>
+                    <Route path='user' element={<Display/>}/>
                     <Route path='*' element={<Nopage />} />
                     <Route path='test' element={<Test />} />
                     <Route path='admin' element={<JobAdmin />}></Route>
-                    <Route path='user' element={<Userlist />}></Route>
+                    <Route path='useradmin' element={<Userlist />}></Route>
                     <Route path='jobdel' element={<JobAdminDel />} />
                     <Route path='userdel' element={<UserDelList />} />
                     <Route path='employer' element={<Employer  tmpId={tmpId} setTmpId={setTmpId}/>}></Route>
