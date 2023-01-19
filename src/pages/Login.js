@@ -33,7 +33,6 @@ function Login({ setRole}) {
                     default:
                         break;
                 }
-
             })
             .catch(err => {
             })

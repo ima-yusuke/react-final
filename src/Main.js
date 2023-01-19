@@ -6,7 +6,7 @@ import Layout from './pages/Layout';
 import Nopage from './pages/Nopage';
 // import RegCompo from './pages/RegCompo';
 import Login from './pages/Login';
-import Test from './pages/Test';
+// import Test from './pages/Test';
 import { useState } from 'react';
 import JobAdmin from './pages/JobAdmin';
 import Userlist from './pages/Userlist';
@@ -29,6 +29,8 @@ function Main() {
     const [item, setItem] = useState([]);
     const [tmpId, setTmpId] = useState(0);
 
+    const [ids, setIds] = useState();
+
     // const [login, setLogin] = useState("")
     const [role, setRole] = useState(1)
     
@@ -43,15 +45,17 @@ function Main() {
                     <Route path='login' element={<Login setUser={setUser} setRole={setRole}/>}/>
                     <Route path='user' element={<Display/>}/>
                     <Route path='*' element={<Nopage />} />
-                    <Route path='test' element={<Test />} />
+                    {/* <Route path='test' element={<Test />} /> */}
                     <Route path='admin' element={<JobAdmin />}></Route>
                     <Route path='useradmin' element={<Userlist />}></Route>
                     <Route path='jobdel' element={<JobAdminDel />} />
                     <Route path='userdel' element={<UserDelList />} />
-                    <Route path='employer' element={<Employer  tmpId={tmpId} setTmpId={setTmpId}/>}></Route>
+                    <Route path='employer' element={<Employer  tmpId={tmpId} setTmpId={setTmpId}  ids={ids} />}></Route>
                     <Route path='employerpost' element={<Employerpost />}></Route>
                     <Route path='employeredit'   element={<Employeredit tmpId={tmpId} setTmpId={setTmpId} />}></Route>
                     <Route path='search' element={<SearchCompo word={word} setWord={setWord} item={item} />} />
+                    
+                    <Route path='details' element={<JobDetails/>} setIds={setIds} ids={ids} />
                 </Route>
             </Routes>
         </BrowserRouter>
