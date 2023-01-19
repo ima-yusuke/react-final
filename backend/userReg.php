@@ -8,14 +8,16 @@
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $pass = $_POST['pass'];
+        $age= $_POST['age'];
+        $role = $_POST['role'];
         $pass = password_hash($_POST['pass'],PASSWORD_DEFAULT);
-        // $pass = $_POST['pass'];
-        $type = intval($_POST['type']);
         $dbcon = new mysqli($serverName,$dbUser,$dbpass,$dbName);
         if($dbcon->connect_error){
             echo "connection failed ".$dbcon->connect_error;
         }else{
-            $sql = "INSERT INTO user_tb (fname,lname,email,pass,type) VALUES ('$fname','$lname','$email','$pass',$type)";
+            $sql = "INSERT INTO user_tb (fname,lname,email,phone,pass,age,role,dis) VALUES ('$fname','$lname','$email','$phone','$pass','$age', '$role',1)";
             if($dbcon->query($sql)===TRUE){
                 echo "You have been registered";
             }else{
