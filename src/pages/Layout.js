@@ -17,11 +17,11 @@ function Layout(){
                         <Link to="/login">Login</Link>
                     </li>
                     <li>
-                        <Link to="/table">Table</Link>
+                        <Link to="/fav">Favorite List</Link>
                     </li>
                 </ul>
             </nav>
-
+   
             <Outlet/>
         </>
     )

@@ -18,7 +18,7 @@
                     session_start();
                     $sid = session_id();
                     $_SESSION['logUser'] = $val;
-                    echo json_encode(["sid"=>$sid]);
+                    echo json_encode(["sid"=>$sid,"user"=>$val]);
                     exit();
                 }
             }
