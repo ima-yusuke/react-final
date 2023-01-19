@@ -60,15 +60,15 @@ function Employer({tmpId ,setTmpId }){
             <div className="icon"> 
             <i className="fa-solid fa-right-from-bracket"></i>
             </div>
-            <a href="<?php echo $baseName.'logout.php';?>"><span>LogOut</span></a>
+            <Link to="/login"><span>LOGOUT</span></Link>
           </div>
       </li>
     </ul>
     </nav>
-    <section>
+    <section id="emp">
         {jobs.map((val,id)=>
             ((val['dis']==1 && val['uid'] == uid))?
-            <div className="card" key={id}>
+            <div className="card" key={id} id="empc">
                 <img className="card-img-top" src="holder.js/100x180/" alt="Title"/>
                 <div className="card-body">
                     <h4 className="card-title">{val['title']}</h4>

@@ -57,7 +57,7 @@ function JobAdminDel(){
             <div className="icon"> 
             <i className="fa-solid fa-right-from-bracket"></i>
             </div>
-            <Link to="/user"><span>User List</span></Link>
+            <Link to="/userlist"><span>User List</span></Link>
           </div>
       </li>
       <li className="var_nav">
@@ -75,12 +75,12 @@ function JobAdminDel(){
             <div className="icon"> 
             <i className="fa-solid fa-right-from-bracket"></i>
             </div>
-            <a href="<?php echo $baseName.'logout.php';?>"><span>LogOut</span></a>
+            <Link to="/login"><span>LOGOUT</span></Link>
           </div>
       </li>
     </ul>
     </nav>
-    <section>
+    <section className="job">
         {jobs.map((val,id)=>
             ((val['dis']==0))?
             <div className="card" key={id}>

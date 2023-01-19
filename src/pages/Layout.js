@@ -24,27 +24,40 @@ function Layout({ setWord, item, setItem, role }) {
             })
     }
 
+    const jump =()=>{
+        nvigate("/fav") 
+    }
+    const out =()=>{
+        nvigate("/login") 
+    }
+
     return (
         <>
-            <nav className="navbar navbar-expand-sm navbar-dark" style={{ backgroundColor: 'pink', display: 'flex', width: '100%', justifyContent: 'center' }}>
+            <nav id="nav"className="navbar navbar-expand-sm navbar-dark" style={{ backgroundColor:"transparent", display: 'flex', width: '100%', justifyContent: 'center' }}>
                 <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                     aria-expanded="false" aria-label="Toggle navigation"></button>
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
+                            <Link className="nav-link" to="/register"></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
+                            <Link className="nav-link" to="/login"></Link>
                         </li>
-
+                        <li className="nav-item">
+                             <Link className="nav-link" to="/fav"></Link>
+                        </li>
                     </ul>
                 </div>
 
                 {sessionStorage.getItem("sid")!==null&&role==1 ?
+                <div className="aaa">
+                <button onClick={jump}>Favorite</button>
+                <button onClick={out}>LOGOUT</button>
                 <form>
                     <input type="text" placeholder="Search title" name="keyword" onChange={(e) => keyword(e)} />
-                </form>:null
+                </form></div>:null
+
                 }
             </nav>
             <Outlet />

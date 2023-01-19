@@ -37,7 +37,7 @@ function UserDelList(){
     )
     
     return(
-        <section>
+        <section id="box">
             {/* <h1>{resp.data}</h1> */}
       <nav>
     <ul>
@@ -65,7 +65,7 @@ function UserDelList(){
             <div className="icon"> 
             <i className="fa-solid fa-right-from-bracket"></i>
             </div>
-            <Link to="/user"><span>User List</span></Link>
+            <Link to="/userlist"><span>User List</span></Link>
           </div>
       </li>
       <li className="var_nav">
@@ -83,7 +83,7 @@ function UserDelList(){
             <div className="icon"> 
             <i className="fa-solid fa-right-from-bracket"></i>
             </div>
-            <a href="<?php echo $baseName.'logout.php';?>"><span>LogOut</span></a>
+            <Link to="/login"><span>LOGOUT</span></Link>
           </div>
       </li>
     </ul>

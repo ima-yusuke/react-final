@@ -2,8 +2,9 @@ import { formToJSON } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userSrv from "../Services/userSrv";
+import { Link } from "react-router-dom";
 
-function Login({ setRole}) {
+function Login({ setRole,setId}) {
     const [login, setLogin] = useState("")
     // to get the session id, later encrypted to protect the userinfo
     const navigate = useNavigate()
@@ -16,11 +17,12 @@ function Login({ setRole}) {
             .then(response => {
                 console.log(response);
                 sessionStorage.setItem("sid", response.data.sid);
-                setLogin(sessionStorage.getItem("sid"))
+                // setLogin(sessionStorage.getItem("sid"))
+                sessionStorage.setItem(response.data.user['uid'],response.data.user['uid'])
                 switch (response.data.role) {
                     case 0:
                         setRole(0)
-                        navigate("/")
+                        navigate("/admin")
                         break;
                     case 1:
                         setRole(1)
@@ -41,36 +43,35 @@ function Login({ setRole}) {
 
     return (
         <>
-            <div className="container">
-                <form onSubmit={log} style={{ paddingTop: "5vh", display: "flex", flexDirection: "column", alignContent: "center" }}>
-                    <div className="mb-3 row">
-                        <label htmlFor="email" className="col-1 col-form-label" style={{ fontSize: "18px", textTransform: "uppercase" }}>Email:</label>
-                        <div className="col-8">
-                            <input type="email" className="form-control" name="email" id="email" placeholder="Email" />
-                        </div>
-                    </div>
-                    <div className="mb-3 row">
-                        <label htmlFor="pass" className="col-1 col-form-label" style={{ fontSize: "18px", textTransform: "uppercase" }}>Password:</label>
-                        <div className="col-8">
-                            <input type="password" className="form-control" name="pass" id="pass" placeholder="Password" />
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="role" className="form-label">Select your role</label>
-                        <select className="form-select form-select-lg" name="role" required>
-                            <option defaultValue disabled>Select one</option>
-                            <option value="0">Administrator</option>
-                            <option value="1">User</option>
-                            <option value="2">Employer</option>
-                        </select>
-                    </div>
-                    <div className="mb-3 row">
-                        <div className="offset-sm-4 col-sm-8">
-                            <input type="submit" className="btn btn-primary" />
-                        </div>
-                    </div>
-                </form>
+            <div class="form-wrapper">
+            <h1>Sign In</h1>
+            <form onSubmit={log}>
+                <div className="form-item">
+                <label for="email"></label>
+                <input type="email" name="email" id="email" required="required" placeholder="Email Address"></input>
+                </div>
+                <div className="form-item">
+                <label for="password"></label>
+                <input type="password" name="pass" id="pass" required="required" placeholder="Password"></input>
+                </div>
+                <div className="form-item">
+                <label htmlFor="role" className="form-label">Select your role</label>
+                <select className="form-select form-select-lg" name="role" required>
+                    <option defaultValue disabled>Select one</option>
+                    <option value="0">Administrator</option>
+                    <option value="1">User</option>
+                    <option value="2">Employer</option>
+                </select>      
+                </div>
+                <div className="button-panel">
+                <input type="submit" className="button" title="Sign In" value="Sign In"></input>
+                </div>
+            </form>
+            <div className="form-footer">
+                <p><Link to= "/register">Create an account</Link></p>
             </div>
+            
+        </div>
         </>
     )
 }

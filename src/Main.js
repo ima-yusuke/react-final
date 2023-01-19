@@ -19,6 +19,7 @@ import Employeredit from './pages/Employeredit';
 import JobDetails from './pages/JobDetails';
 import Register from './pages/Register';
 import Display from './pages/Display';
+import Fav from './pages/Fav';
 
 function Main() {
     const [msg, setMsg] = useState("");
@@ -35,19 +36,21 @@ function Main() {
     const [role, setRole] = useState(1)
     
 
+
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Layout word={word} setWord={setWord} item={item} setItem={setItem} role={role} setRole={setRole}/>}>
-                    <Route index element={<Home setMsg={setMsg} msg={msg} />} />
+                    <Route element={<Home setMsg={setMsg} msg={msg} />} />
                     <Route path='about' element={<About />} /> {/* if path == /about then displaying componenet should be <About/> */}
                     <Route path='register' element={<Register/>}/>
-                    <Route path='login' element={<Login setUser={setUser} setRole={setRole}/>}/>
+                    <Route index path='login' element={<Login setUser={setUser} setRole={setRole} />}/>
                     <Route path='user' element={<Display/>}/>
+                    <Route path='fav' element={<Fav/>}/>
                     <Route path='*' element={<Nopage />} />
                     {/* <Route path='test' element={<Test />} /> */}
                     <Route path='admin' element={<JobAdmin />}></Route>
-                    <Route path='useradmin' element={<Userlist />}></Route>
+                    <Route path='userlist' element={<Userlist />}></Route>
                     <Route path='jobdel' element={<JobAdminDel />} />
                     <Route path='userdel' element={<UserDelList />} />
                     <Route path='employer' element={<Employer  tmpId={tmpId} setTmpId={setTmpId}  ids={ids} />}></Route>

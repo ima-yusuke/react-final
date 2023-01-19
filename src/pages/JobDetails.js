@@ -33,7 +33,7 @@ function JobDetails({setIds}){
             {
                 job.map((val, idx)=>
                 (jobid == val['jobid']) ?
-                <section key={idx}>
+                <section key={idx} id="bg">
                     <h3>{val['title']}</h3>
                     <article>
                         <p>{val['contents']}</p>

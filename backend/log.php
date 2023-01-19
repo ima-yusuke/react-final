@@ -18,15 +18,15 @@ header('Access-Control-Allow-Header: content-type');
                     session_start();
                     $sid = session_id();
                     $_SESSION['logUser'] = $val;
-                    // echo json_encode(["sid"=>$sid]);  
+                    // echo json_encode(["sid"=>$sid]); 
                    if($role==0){
-                        echo json_encode(["role"=>0, "sid"=>$sid]);
+                        echo json_encode(["role"=>0, "sid"=>$sid ,"user"=>$val]);
                         exit();
                    }elseif($role==1){
-                        echo json_encode(["role"=>1, "sid"=>$sid]);
+                        echo json_encode(["role"=>1, "sid"=>$sid, "user"=>$val]);
                         exit();    
                    }else{
-                        echo json_encode(["role"=>2, "sid"=>$sid]);
+                        echo json_encode(["role"=>2, "sid"=>$sid, "user"=>$val]);
                         exit();
                    } 
                 }
