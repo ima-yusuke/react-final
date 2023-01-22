@@ -1,24 +1,50 @@
-import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import jsonSrv from "../Services/jsonSrv";
 
-function JobDetail(props){
-    const [flag, setFlag] = useState();
-    const [job, setJob] = useState();
-    const [app, setApp] = useState();
+function JobDetails({setIds}){
+    const { state } = useLocation();
+    let jobid = state;
+    const [job, setJob] = useState([]);
+    let details = () => {
+        let formData = new FormData();
+        formData.append("jobid", jobid);
+        jsonSrv.send('getDetails.php', formData)
+        .then(res=>{
+            setJob(res.data);
+        })
+    }
+    useEffect(()=>{
+        details();
+    }, [])
     let apply = () => {
-        if(flag){
-            // send data to database
-        }else{
-            redirect("/login");
-        }
+        let sid = sessionStorage.getItem('sid');
+        setIds([sid, jobid]);
+        let formData = new FormData();
+        formData.append("sid", sid);
+        formData.append("jobid", jobid);
+        jsonSrv.send('apply.php', formData)
+        .then(res=>{
+            alert(res.data);
+        })
     }
     return (
         <>
-            <section>
-                
-            </section>
+            {
+                job.map((val, idx)=>
+                (jobid == val['jobid']) ?
+                <section key={idx}>
+                    <h3>{val['title']}</h3>
+                    <article>
+                        <p>{val['contents']}</p>
+                        <p>{val['salary']}</p>
+                        <p>{val['address']}</p>
+                    </article>
+                </section>
+                :null)
+            }
             <button type="button" onClick={apply}>Apply</button>
         </>
     )
 }
-export default JobDetail;
+export default JobDetails;
